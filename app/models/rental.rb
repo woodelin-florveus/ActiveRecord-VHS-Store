@@ -22,8 +22,7 @@ class Rental < ActiveRecord::Base
     end
     
 
-    def self.past_due_date
-         binding.pry        
+    def self.past_due_date      
         self.all.select{|due| due.past_due}
     end
     # returns a list of all the rentals past due date, currently rented or rented in the past

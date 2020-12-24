@@ -15,12 +15,12 @@ class Client < ActiveRecord::Base
 
     # Client.most_active - returns a list of top 5 most active clients (i.e. those who had the most non-current / returned rentals)
 
-    def return_rentals
-        # check return rentals
-        
+    def count_return_rentals
+    self.rentals.where( current: false ).count
     end
 
     def self.most_active
+        Client.all.sort_by{|client| client.count_return_rentals}.last(5)
         # take in clients 
         # check who has the most non current rental
         # 
