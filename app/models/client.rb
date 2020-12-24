@@ -26,7 +26,11 @@ class Client < ActiveRecord::Base
         # 
     end
 
-    # vhs.rentals gives clietns 
-    # client.rental gives vhs
+    def return_one(vhs)
+        binding.pry
+        returned = Rental.find_by(vhs_id: vhs.id)
+        Rental.update(returned.id, current: false)
+    end
+    #client#return_one - accepts an argument of an vhs instance, finds the corresponding rental and updates the rental's current attribute from true to false
 
 end
